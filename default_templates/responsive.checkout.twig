@@ -150,8 +150,8 @@
     <section id="fc-checkout__section--ra-subscription">
         <fieldset id="subscription-select">
             <label class="ra-subscription-label">Make this a monthly recurring donation <strong>(greatly appreciated!)</strong></label><br>
-            <input class="ra-subscription" id="ra-subscription-yes" type="radio" required="" name="subscription" value="yes"> Yes
-            <input class="ra-subscription" id="ra-subscription-no" type="radio" required="" name="subscription" value="no"> No
+            <input class="ra-subscription" id="ra-subscription-yes" type="radio" data-fc-required name="subscription" value="yes"> Yes
+            <input class="ra-subscription" id="ra-subscription-no" type="radio" data-fc-required name="subscription" value="no"> No
         </fieldset>
     </section>
 
@@ -893,6 +893,7 @@
 
     <script type="text/javascript" charset="utf-8">
         //$(document).ready(function() {
+
             var myCode,
                 myDonationName,
                 myTotal;
@@ -909,9 +910,9 @@
                         'price': myTotal,
                         'sub_frequency': '1m',
                         'code': myCode
-                    }).done(function () {
+                    }).done(function (next) {
                         FC.checkout.render();
-                        //next();
+                        next();
                     });
                 } else if ($("#ra-subscription-no").is(":checked")) {
                     myTotal = FC.json.total_order;
@@ -923,9 +924,9 @@
                         'name': myDonationName,
                         'price': myTotal,
                         'code': myCode
-                    }).done(function () {
+                    }).done(function (next) {
                         FC.checkout.render();
-                        //next();
+                        next();
                     });
                 }
             });
