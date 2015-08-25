@@ -912,6 +912,7 @@
                         'code': myCode
                     }).done(function (next) {
                         FC.checkout.render();
+                        $("#ra-subscription-yes").attr("checked", "checked");
                         next();
                     });
                 } else if ($("#ra-subscription-no").is(":checked")) {
@@ -926,6 +927,7 @@
                         'code': myCode
                     }).done(function (next) {
                         FC.checkout.render();
+                        $("#ra-subscription-no").attr("checked", "checked");
                         next();
                     });
                 }
