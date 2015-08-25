@@ -48,46 +48,6 @@
         }
     </style>
     
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function() {
-            var myCode,
-            myDonationName,
-            myTotal;
-
-            $(".ra-subscription").change(function(){
-                if ($("#ra-subscription-yes").is(":checked")) {
-                    myTotal = FC.json.total_order;
-                    myCode = "restoredanew_sub";
-                    myDonationName = "Monthly Donation";
-                    console.log("yes");
-                    FC.cart.request({
-                        'empty': 'true',
-                        'name': myDonationName,
-                        'price': myTotal,
-                        'sub_frequency': '1m',
-                        'code': myCode
-                    }).done(function (params, next) {
-                        FC.checkout.render();
-                        next();
-                    });
-                } else if ($("#ra-subscription-no").is(":checked")) {
-                    myTotal = FC.json.total_order;
-                    myCode = "restoredanew_donation";
-                    myDonationName = "One-Time Donation";
-                    console.log("computer says no");
-                    FC.cart.request({
-                        'empty': 'true',
-                        'name': myDonationName,
-                        'price': myTotal,
-                        'code': myCode
-                    }, next).done(function (params, next) {
-                        FC.checkout.render();
-                        next();
-                    });
-                }
-            });
-        });
-    </script>
 </head>
 <body>
 <!-- has to be here because of chrome bug -->
@@ -930,5 +890,46 @@
     <!--[if lt IE 10 ]>
         <script src="//{{ config.store_domain }}/static/scripts/placeholder/placeholder_polyfill.jquery.js" charset="utf-8"></script>
     <![endif]-->
+
+    <script type="text/javascript" charset="utf-8">
+        //$(document).ready(function() {
+            var myCode,
+            myDonationName,
+            myTotal;
+
+            $(".ra-subscription").change(function(){
+                if ($("#ra-subscription-yes").is(":checked")) {
+                    myTotal = FC.json.total_order;
+                    myCode = "restoredanew_sub";
+                    myDonationName = "Monthly Donation";
+                    console.log("yes");
+                    FC.cart.request({
+                        'empty': 'true',
+                        'name': myDonationName,
+                        'price': myTotal,
+                        'sub_frequency': '1m',
+                        'code': myCode
+                    }).done(function (params, next) {
+                        FC.checkout.render();
+                        next();
+                    });
+                } else if ($("#ra-subscription-no").is(":checked")) {
+                    myTotal = FC.json.total_order;
+                    myCode = "restoredanew_donation";
+                    myDonationName = "One-Time Donation";
+                    console.log("computer says no");
+                    FC.cart.request({
+                        'empty': 'true',
+                        'name': myDonationName,
+                        'price': myTotal,
+                        'code': myCode
+                    }, next).done(function (params, next) {
+                        FC.checkout.render();
+                        next();
+                    });
+                }
+            });
+       // });
+    </script>
 </body>
 </html>
