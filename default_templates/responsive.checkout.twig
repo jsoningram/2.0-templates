@@ -63,15 +63,14 @@
                         'empty': 'true',
                         'name': myDonationName,
                         'price': myTotal,
-                        'sub_frequency': '1m',
+                        //'sub_frequency': '1m',
                         'code': myCode
                     }).done(function () {
                         FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&sub_frequency=1m&code=' + myCode);
                         FC.checkout.render();
                         next();
                     });
-                }
-                if ($("#ra-subscription-no").is(":checked")) {
+                } else if ($("#ra-subscription-no").is(":checked")) {
                     myTotal = FC.json.total_order;
                     myCode = "restoredanew_donation";
                     myDonationName = "One-Time Donation";
