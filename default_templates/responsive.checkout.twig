@@ -58,9 +58,9 @@
           if ($("#ra-subscription-yes").is(":checked")) {
             myTotal = FC.json.total_order;
             // empty cart 
-            $.getJSON('https://' + FC.settings.storedomain + '/cart?output=json&cart=view&callback=?' + fc_AddSession(), function(data){
-                // do something with `data`
-            });
+            // $.getJSON('https://' + FC.settings.storedomain + '/cart?output=json&cart=view&callback=?' + fc_AddSession(), function(data){
+            //     // do something with `data`
+            // });
             // load cart
             myCode = "restoredanew_sub";
             myDonationName = "Monthly Donation";
