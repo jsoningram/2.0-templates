@@ -894,10 +894,10 @@
     <script type="text/javascript" charset="utf-8">
         //$(document).ready(function() {
             var myCode,
-            myDonationName,
-            myTotal;
+                myDonationName,
+                myTotal;
 
-            $(".ra-subscription").change(function(params, next){
+            $(".ra-subscription").change(function(){
                 if ($("#ra-subscription-yes").is(":checked")) {
                     myTotal = FC.json.total_order;
                     myCode = "restoredanew_sub";
@@ -911,7 +911,7 @@
                         'code': myCode
                     }).done(function () {
                         FC.checkout.render();
-                        next();
+                        //next();
                     });
                 } else if ($("#ra-subscription-no").is(":checked")) {
                     myTotal = FC.json.total_order;
@@ -925,7 +925,7 @@
                         'code': myCode
                     }).done(function () {
                         FC.checkout.render();
-                        next();
+                        //next();
                     });
                 }
             });
