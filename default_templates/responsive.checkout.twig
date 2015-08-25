@@ -66,9 +66,9 @@
                         'price': myTotal,
                         'sub_frequency': '1m',
                         'code': myCode
-                    }, next).done(function () {
+                    }).done(function () {
                         FC.checkout.render();
-                        next();
+                        //next();
                     });
                 } else if ($("#ra-subscription-no").is(":checked")) {
                     myTotal = FC.json.total_order;
@@ -80,9 +80,9 @@
                         'name': myDonationName,
                         'price': myTotal,
                         'code': myCode
-                    }, next).done(function () {
+                    }).done(function () {
                         FC.checkout.render();
-                        next();
+                        //next();
                     });
                 }
             });
