@@ -923,7 +923,7 @@
                         'name': myDonationName,
                         'price': myTotal,
                         'code': myCode
-                    }, next).done(function (params, next) {
+                    }).done(function (params, next) {
                         FC.checkout.render();
                         next();
                     });
