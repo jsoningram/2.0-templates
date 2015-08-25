@@ -49,33 +49,70 @@
     </style>
     
     <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      var myCode,
-          myDonationName,
-          myTotal;
+    // $(document).ready(function() {
+    //   var myCode,
+    //       myDonationName,
+    //       myTotal;
 
-      $(".ra-subscription").change(function(){  
-          if ($("#ra-subscription-yes").is(":checked")) {
-            myTotal = FC.json.total_order;
-            // empty cart 
-            // $.getJSON('https://' + FC.settings.storedomain + '/cart?output=json&cart=view&callback=?' + fc_AddSession(), function(data){
-            //     // do something with `data`
-            // });
-            // load cart
-            myCode = "restoredanew_sub";
-            myDonationName = "Monthly Donation";
-            FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&sub_frequency=1m&code=' + myCode);
-            location.reload(true);
-          }
-          else if ($("#ra-subscription-no").is(":checked")) {
-            myTotal = FC.json.total_order;
-            // empty cart
-            myCode = "restoredanew_donation";
-            myDonationName = "One-Time Donation";
-            FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&code=' + myCode);
-            location.reload(true);
-          }
-      });
+    //   $(".ra-subscription").change(function(){  
+    //       if ($("#ra-subscription-yes").is(":checked")) {
+    //         myTotal = FC.json.total_order;
+    //         // empty cart 
+    //         // $.getJSON('https://' + FC.settings.storedomain + '/cart?output=json&cart=view&callback=?' + fc_AddSession(), function(data){
+    //         //     // do something with `data`
+    //         // });
+    //         // load cart
+    //         myCode = "restoredanew_sub";
+    //         myDonationName = "Monthly Donation";
+    //         FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&sub_frequency=1m&code=' + myCode);
+    //       }
+    //       else if ($("#ra-subscription-no").is(":checked")) {
+    //         myTotal = FC.json.total_order;
+    //         // empty cart
+    //         myCode = "restoredanew_donation";
+    //         myDonationName = "One-Time Donation";
+    //         FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&code=' + myCode);
+    //       }
+    //   });
+    // });
+
+    $(document).ready(function() {
+        var myCode,
+        myDonationName,
+        myTotal;
+
+        $(".ra-subscription").change(function(){
+            if ($("#ra-subscription-yes").is(":checked")) {
+                myTotal = FC.json.total_order;
+                myCode = "restoredanew_sub";
+                myDonationName = "Monthly Donation";
+                FC.cart.request({
+                    'empty': 'true',
+                    'name': myDonationName,
+                    'price': myTotal,
+                    'sub_frequency': '1m',
+                    'code': myCode
+                }).done(function () {
+                    FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&sub_frequency=1m&code=' + myCode);
+                    FC.checkout.render();
+                    next();
+                });
+            } else if ($("#ra-subscription-no").is(":checked")) {
+                myTotal = FC.json.total_order;
+                myCode = "restoredanew_donation";
+                myDonationName = "One-Time Donation";
+                FC.cart.request({
+                    'empty': 'true',
+                    'name': myDonationName,
+                    'price': myTotal,
+                    'code': myCode
+                }).done(function () {
+                    FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&code=' + myCode);
+                    FC.checkout.render();
+                    next();
+                });
+            }
+        });
     });
     </script>
 </head>
