@@ -897,7 +897,7 @@
             myDonationName,
             myTotal;
 
-            $(".ra-subscription").change(function(){
+            $(".ra-subscription").change(function(params, next){
                 if ($("#ra-subscription-yes").is(":checked")) {
                     myTotal = FC.json.total_order;
                     myCode = "restoredanew_sub";
@@ -909,7 +909,7 @@
                         'price': myTotal,
                         'sub_frequency': '1m',
                         'code': myCode
-                    }).done(function (params, next) {
+                    }).done(function () {
                         FC.checkout.render();
                         next();
                     });
@@ -923,7 +923,7 @@
                         'name': myDonationName,
                         'price': myTotal,
                         'code': myCode
-                    }).done(function (params, next) {
+                    }).done(function () {
                         FC.checkout.render();
                         next();
                     });
