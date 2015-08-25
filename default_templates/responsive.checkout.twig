@@ -892,48 +892,12 @@
     <![endif]-->
 
     <script type="text/javascript" charset="utf-8">
-            var myCode,
-                myDonationName,
-                myTotal;
+        var myCode,
+            myDonationName,
+            myTotal;
 
-            // $(".ra-subscription").change(function(){
-            //     if ($("#ra-subscription-yes").is(":checked")) {
-            //         myTotal = FC.json.total_order;
-            //         myCode = "restoredanew_sub";
-            //         myDonationName = "Monthly Donation";
-            //         console.log("yes");
-            //         FC.cart.request({
-            //             'empty': 'true',
-            //             'name': myDonationName,
-            //             'price': myTotal,
-            //             'sub_frequency': '1m',
-            //             'code': myCode
-            //         }).done(function () {
-            //             FC.checkout.render();
-            //             $("#ra-subscription-no").removeAttr("checked");
-            //             $("#ra-subscription-yes").attr("checked", "checked");
-            //             next();
-            //         });
-            //     } else if ($("#ra-subscription-no").is(":checked")) {
-            //         myTotal = FC.json.total_order;
-            //         myCode = "restoredanew_donation";
-            //         myDonationName = "One-Time Donation";
-            //         console.log("computer says no");
-            //         FC.cart.request({
-            //             'empty': 'true',
-            //             'name': myDonationName,
-            //             'price': myTotal,
-            //             'code': myCode
-            //         }).done(function () {
-            //             FC.checkout.render();
-            //             $("#ra-subscription-yes").removeAttr("checked");
-            //             $("#ra-subscription-no").attr("checked", "checked");
-            //             next();
-            //         });
-            //     }
-            // });
-        $(document).ready(function() {
-            $("#ra-subscription-yes").click(function(){
+        $(".ra-subscription").change(function(){
+            if ($("#ra-subscription-yes").is(":checked")) {
                 myTotal = FC.json.total_order;
                 myCode = "restoredanew_sub";
                 myDonationName = "Monthly Donation";
@@ -950,9 +914,7 @@
                     $("#ra-subscription-yes").attr("checked", "checked");
                     next();
                 });
-            });
-
-            $("#ra-subscription-no").click(function(){
+            } else if ($("#ra-subscription-no").is(":checked")) {
                 myTotal = FC.json.total_order;
                 myCode = "restoredanew_donation";
                 myDonationName = "One-Time Donation";
@@ -968,7 +930,7 @@
                     $("#ra-subscription-no").attr("checked", "checked");
                     next();
                 });
-            });
+            }
         });
     </script>
 </body>
