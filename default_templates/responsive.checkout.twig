@@ -36,17 +36,30 @@
     <![endif]-->
 
     <!-- do stuff when subscription radios are checked -->
+    
     <script type="text/javascript" charset="utf-8">
-        jQuery(document).ready(function() {
-          $(".ra-subscription").change(function(){  
-              if ($("#ra-subscription-yes").is(":checked")) {
-                console.log("is yes");
-              }
-              else if ($("#ra-subscription-no").is(":checked")) {
-                console.log("is no");
-              }
-          });
-        });
+    $(document).ready(function() {
+      var myCode,
+          myDonationName,
+          myTotal;
+
+      $(".ra-subscription").change(function(){  
+          if ($("#ra-subscription-yes").is(":checked")) {
+            myTotal = FC.json.total_order;
+            // empty cart 
+            myCode = "restoredanew_sub";
+            myDonationName = "Monthly Donation";
+            FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&sub_frequency=1m&code=' + myCode);
+          }
+          else if ($("#ra-subscription-no").is(":checked")) {
+            myTotal = FC.json.total_order;
+            // empty cart
+            myCode = "restoredanew_donation";
+            myDonationName = "One-Time Donation";
+            FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&code=' + myCode);
+          }
+      });
+    });
     </script>
 </head>
 <body>
