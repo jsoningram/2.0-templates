@@ -892,13 +892,11 @@
     <![endif]-->
 
     <script type="text/javascript" charset="utf-8">
-        //$(document).ready(function() {
-
             var myCode,
                 myDonationName,
                 myTotal;
 
-            $(".ra-subscription").change(function(){
+            $(".ra-subscription").click(function(){
                 if ($("#ra-subscription-yes").is(":checked")) {
                     myTotal = FC.json.total_order;
                     myCode = "restoredanew_sub";
@@ -910,8 +908,9 @@
                         'price': myTotal,
                         'sub_frequency': '1m',
                         'code': myCode
-                    }).done(function (next) {
+                    }).done(function () {
                         FC.checkout.render();
+                        $("#ra-subscription-no").removeAttr("checked");
                         $("#ra-subscription-yes").attr("checked", "checked");
                         next();
                     });
@@ -925,14 +924,14 @@
                         'name': myDonationName,
                         'price': myTotal,
                         'code': myCode
-                    }).done(function (next) {
+                    }).done(function () {
                         FC.checkout.render();
+                        $("#ra-subscription-yes").removeAttr("checked");
                         $("#ra-subscription-no").attr("checked", "checked");
                         next();
                     });
                 }
             });
-       // });
     </script>
 </body>
 </html>
