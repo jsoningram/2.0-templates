@@ -54,7 +54,7 @@
             myDonationName,
             myTotal;
 
-            $(".ra-subscription").change(function(){
+            $.each(".ra-subscription").change(function(){
                 if ($("#ra-subscription-yes").is(":checked")) {
                     myTotal = FC.json.total_order;
                     myCode = "restoredanew_sub";
@@ -68,7 +68,7 @@
                         'code': myCode
                     }).done(function () {
                         FC.checkout.render();
-                        //next();
+                        next();
                     });
                 } else if ($("#ra-subscription-no").is(":checked")) {
                     myTotal = FC.json.total_order;
@@ -80,9 +80,9 @@
                         'name': myDonationName,
                         'price': myTotal,
                         'code': myCode
-                    }).done(function () {
+                    }, next).done(function () {
                         FC.checkout.render();
-                        //next();
+                        next();
                     });
                 }
             });
