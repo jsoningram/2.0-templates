@@ -36,6 +36,17 @@
     <![endif]-->
 
     <!-- do stuff when subscription radios are checked -->
+
+    <style>
+        section#fc-checkout__section--ra-subscription {
+            background-color: #f1f1f1;
+            padding: 1em;
+        }
+        label.ra-subscription-label {
+            font-size: 1.4em;
+            font-weight: normal !important;
+        }
+    </style>
     
     <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
@@ -47,9 +58,14 @@
           if ($("#ra-subscription-yes").is(":checked")) {
             myTotal = FC.json.total_order;
             // empty cart 
+            $.getJSON('https://' + FC.settings.storedomain + '/cart?output=json&cart=view&callback=?' + fc_AddSession(), function(data){
+                // do something with `data`
+            });
+            // load cart
             myCode = "restoredanew_sub";
             myDonationName = "Monthly Donation";
             FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&sub_frequency=1m&code=' + myCode);
+            location.reload(true);
           }
           else if ($("#ra-subscription-no").is(":checked")) {
             myTotal = FC.json.total_order;
@@ -57,6 +73,7 @@
             myCode = "restoredanew_donation";
             myDonationName = "One-Time Donation";
             FC.client.request('https://' + FC.settings.storedomain + '/cart?name='+ myDonationName +'&price=' + myTotal + '&code=' + myCode);
+            location.reload(true);
           }
       });
     });
