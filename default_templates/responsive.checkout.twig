@@ -896,7 +896,7 @@
                 myDonationName,
                 myTotal;
 
-            // $(".ra-subscription").click(function(){
+            // $(".ra-subscription").change(function(){
             //     if ($("#ra-subscription-yes").is(":checked")) {
             //         myTotal = FC.json.total_order;
             //         myCode = "restoredanew_sub";
@@ -932,7 +932,7 @@
             //         });
             //     }
             // });
-
+        $(document).ready(function() {
             $("#ra-subscription-yes").click(function(){
                 myTotal = FC.json.total_order;
                 myCode = "restoredanew_sub";
@@ -969,6 +969,7 @@
                     next();
                 });
             });
+        });
     </script>
 </body>
 </html>
