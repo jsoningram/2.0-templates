@@ -46,6 +46,17 @@
             font-size: 1.4em;
             font-weight: normal !important;
         }
+        :invalid {
+            box-shadow: none;
+        }
+
+        :-moz-submit-invalid {
+            box-shadow: none;
+        }
+
+        :-moz-ui-invalid {
+            box-shadow:none;
+        }
     </style>
     
 </head>
@@ -150,8 +161,8 @@
     <section id="fc-checkout__section--ra-subscription">
         <fieldset id="subscription-select">
             <label class="ra-subscription-label">Make this a monthly recurring donation <strong>(greatly appreciated!)</strong></label><br>
-            <input class="ra-subscription" id="ra-subscription-yes" type="radio" name="subscription" value="yes" required> Yes
-            <input class="ra-subscription" id="ra-subscription-no" type="radio" name="subscription" value="no" required> No
+            <input class="ra-subscription" id="ra-subscription-yes" type="radio" name="subscription" value="yes" autocomplete="off" required> Yes
+            <input class="ra-subscription" id="ra-subscription-no" type="radio" name="subscription" value="no" autocomplete="off" required> No
         </fieldset>
     </section>
 
@@ -901,7 +912,6 @@
                 myTotal = FC.json.total_order;
                 myCode = "restoredanew_sub";
                 myDonationName = "Monthly Donation";
-                console.log("yes");
                 FC.cart.request({
                     'empty': 'true',
                     'name': myDonationName,
@@ -911,14 +921,13 @@
                 }).done(function () {
                     FC.checkout.render();
                     $("#ra-subscription-no").removeAttr("checked");
-                    $("#ra-subscription-yes").attr("checked", "checked");
+                    $("#ra-subscription-yes").attr("checked");
                     next();
                 });
             } else if ($("#ra-subscription-no").is(":checked")) {
                 myTotal = FC.json.total_order;
                 myCode = "restoredanew_donation";
                 myDonationName = "One-Time Donation";
-                console.log("computer says no");
                 FC.cart.request({
                     'empty': 'true',
                     'name': myDonationName,
@@ -927,7 +936,7 @@
                 }).done(function () {
                     FC.checkout.render();
                     $("#ra-subscription-yes").removeAttr("checked");
-                    $("#ra-subscription-no").attr("checked", "checked");
+                    $("#ra-subscription-no").attr("checked");
                     next();
                 });
             }
