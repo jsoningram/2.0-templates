@@ -922,7 +922,6 @@
                     FC.checkout.render();
                     $("#ra-subscription-no").removeAttr("checked");
                     $("#ra-subscription-yes").attr("checked");
-                    next();
                 });
             } else if ($("#ra-subscription-no").is(":checked")) {
                 myTotal = FC.json.total_order;
@@ -937,7 +936,6 @@
                     FC.checkout.render();
                     $("#ra-subscription-yes").removeAttr("checked");
                     $("#ra-subscription-no").attr("checked");
-                    next();
                 });
             }
         });
